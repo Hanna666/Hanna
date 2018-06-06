@@ -3,7 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class NavigationHelper extends HalperBase{
+public class NavigationHelper extends HalperBase {
 
     public NavigationHelper(FirefoxDriver wd) {
 
@@ -14,3 +14,6 @@ public class NavigationHelper extends HalperBase{
         click(By.linkText("groups"));
     }
 }
+
+
+
