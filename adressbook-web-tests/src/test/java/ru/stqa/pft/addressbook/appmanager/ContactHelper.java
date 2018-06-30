@@ -68,7 +68,6 @@ public class ContactHelper extends HalperBase {
         homePage();
     }
     public void modify(ContactData contact) {
-        selectContactById(contact.getId());
         modificationContact();
         fillContactForm (contact);
         okModificationContact();
@@ -100,13 +99,13 @@ public class ContactHelper extends HalperBase {
 
     public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+        List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
         for (WebElement element: elements){
 
         int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-           ContactData contact = new ContactData().whisFirstname(element.findElement( By.xpath("//td[3]")).getText()).
-                   withLastname(element.findElement(By.xpath("//td[2]")).getText()).withMobile(element.findElement(By.xpath("//td[6]")).getText()).
-                   withEmail(element.findElement(By.xpath("//td[5]")).getText());
+           ContactData contact = new ContactData().whisFirstname(element.findElement( By.xpath(".//td[3]")).getText()).
+                   withLastname(element.findElement(By.xpath(".//td[2]")).getText()).withMobile(element.findElement(By.xpath(".//td[6]")).getText()).
+                   withEmail(element.findElement(By.xpath(".//td[5]")).getText());
             contacts.add(contact);
         }
         return contacts;
@@ -114,14 +113,14 @@ public class ContactHelper extends HalperBase {
 
     public Contacts all() {
         Contacts contacts = new Contacts();
-        List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+        List<WebElement> elements = wd.findElements(By.xpath(".//tr[@name='entry']"));
         for (WebElement element: elements){
 
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
 
-            ContactData contact = new ContactData().withId(id).whisFirstname(element.findElement( By.xpath("//td[3]")).getText()).
-                    withLastname(element.findElement(By.xpath("//td[2]")).getText()).withMobile(element.findElement(By.xpath("//td[6]")).getText()).
-                    withEmail(element.findElement(By.xpath("//td[5]")).getText());
+            ContactData contact = new ContactData().withId(id).whisFirstname(element.findElement( By.xpath(".//td[3]")).getText()).
+                    withLastname(element.findElement(By.xpath(".//td[2]")).getText()).withMobile(element.findElement(By.xpath(".//td[6]")).getText()).
+                    withEmail(element.findElement(By.xpath(".//td[5]")).getText());
             contacts.add(contact);
         }
         return contacts;
