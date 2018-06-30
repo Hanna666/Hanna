@@ -1,0 +1,8 @@
+[0630/174017.276:ERROR:process_reader_win.cc(90)] NtQuerySystemInformation: {Недостаточно квот} Недостаточно квот на виртуальную память или файл подкачки для завершения требуемой операции. (0xc0000017)
+[0630/174017.276:ERROR:exception_snapshot_win.cc(88)] thread ID 13148 not found in process
+[0630/223443.613:ERROR:process_info.cc(359)] UncheckedAllocate
+[0630/223443.887:ERROR:process_info.cc(375)] NtQuerySystemInformation SystemExtendedHandleInformation: {Недостаточно квот} Недостаточно квот на виртуальную память или файл подкачки для завершения требуемой операции. (0xc0000017)
+[0630/223444.304:ERROR:process_info.cc(375)] NtQuerySystemInformation SystemExtendedHandleInformation: {Недостаточно квот} Недостаточно квот на виртуальную память или файл подкачки для завершения требуемой операции. (0xc0000017)
+[0630/223723.961:ERROR:process_reader_win.cc(90)] NtQuerySystemInformation: {Недостаточно квот} Недостаточно квот на виртуальную память или файл подкачки для завершения требуемой операции. (0xc0000017)
+[0630/223723.992:ERROR:exception_snapshot_win.cc(88)] thread ID 7756 not found in process
+[0630/225336.348:ERROR:process_info.cc(359)] UncheckedAllocate

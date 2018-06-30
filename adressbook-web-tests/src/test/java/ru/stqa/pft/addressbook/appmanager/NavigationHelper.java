@@ -11,7 +11,7 @@ public class NavigationHelper extends HalperBase {
         super(wd);
     }
 
-    public void gotoGroupPage() {
+    public void GroupPage() {
         click(By.linkText("groups"));
     }
 }
