@@ -17,14 +17,16 @@ public class ContactCreationTests extends TestBase{
     @Test
     public void testContactCreation () {
         app.contact().homePage();
-        Contacts before = app.contact().all();
+        Set<ContactData> before = app.contact().all();
         ContactData contact = new ContactData().whisFirstname("asd1").withLastname("dfg2").withMobile("hgj3").withEmail("sdf4");
         app.contact().create(contact);
-        Contacts after = app.contact().all();
+        Set<ContactData> after = app.contact().all();
         Assert.assertEquals(after.size(), before.size()+1 );
 
-        assertThat(after, equalTo(
-                before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+        contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
+        before.add(contact);
+        Assert.assertEquals(before,after);
+
     }
 
 }

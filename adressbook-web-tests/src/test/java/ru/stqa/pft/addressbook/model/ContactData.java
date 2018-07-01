@@ -3,11 +3,80 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-    private  int id = Integer.MAX_VALUE;
-    private  String firstname;
-    private  String lastname;
-    private  String mobile;
-    private  String email;
+    private int id = Integer.MAX_VALUE;
+    private String firstname;
+    private String lastname;
+    private String mobile;
+    private String homePhone;
+    private String worckPhone;
+    private String email;
+    private String email2;
+    private String email3;
+    private String address;
+    private String allPhones;
+    private String allEmail;
+
+    public String getAllEmail() {
+        return allEmail;
+    }
+
+    public ContactData withAllEmail(String allEmail) {
+        this.allEmail = allEmail;
+        return this;
+    }
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
+    public String getWorkPhone() {
+        return worckPhone;
+    }
+    public ContactData withWorkPhone (String worckPhone){
+        this.worckPhone = worckPhone;
+        return this;
+    }
+
+    public String getEmail2() {
+        return email2;
+    }
+    public ContactData withEmail2 (String email2){
+        this.email2 = email2;
+        return this;
+    }
+
+    public String getEmail3() {
+        return email3;
+    }
+    public ContactData withEmail3 (String email3){
+        this.email3 = email3;
+        return this;
+    }
+
+
+    public String getHomePhone() {
+        return homePhone;
+    }
+
+    public ContactData withHomePhone (String homePhone) {
+        this.homePhone = homePhone;
+        return this;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+    public ContactData withAddress (String address){
+        this.address = address;
+        return this;
+
+    }
+
 
     public ContactData whisFirstname(String firstname) {
         this.firstname = firstname;
@@ -71,7 +140,7 @@ public ContactData  withId (int id){
 
     public String getLastname() { return lastname; }
 
-    public String getMobile() {
+    public String getMobilePhone() {
         return mobile;
     }
 
@@ -81,6 +150,7 @@ public ContactData  withId (int id){
 
     public int getId() {return id;}
 
-    }
+
+}
 
 
