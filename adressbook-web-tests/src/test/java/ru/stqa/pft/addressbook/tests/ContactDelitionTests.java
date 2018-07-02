@@ -15,7 +15,7 @@ public class ContactDelitionTests extends TestBase {
     public void ensurePrecondition(){
         app.contact().homePage();
         if (app.contact().list().size() == 0) {
-            app.contact().create(new ContactData().whithFirstname("xtest1").withLastname("xtest2"));
+            app.contact().create(new ContactData().withFirstname("xtest1").withLastname("xtest2"));
         }
     }
 

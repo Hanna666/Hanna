@@ -1,30 +1,43 @@
 package ru.stqa.pft.addressbook.tests;
 
-import gw.internal.ext.com.beust.jcommander.Parameter;
+import com.thoughtworks.xstream.XStream;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.io.File;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase{
 
-    @Parameter(names = "-c", description = "GroupCount")
-    public int count;
+    @DataProvider
+    public Iterator <Object[]> validContacts () throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contact.xml")));
+        String xml = "";
+        String line = reader.readLine();
+        while (line != null){
+            xml += line;
+            line = reader.readLine();
+        }
+        XStream xstream = new XStream();
+        xstream.processAnnotations(ContactData.class);
+        List<ContactData> contacts = (List<ContactData>) xstream.fromXML(xml);
+        return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
+    }
 
-    @Parameter (names = "-f", description = "Target file")
-    public String file;
-
-    @Test
-    public void testContactCreation () {
+    @Test (dataProvider = "validContacts")
+    public void testContactCreation (ContactData contact) {
         app.contact().homePage();
         Set<ContactData> before = app.contact().all();
-        File photo = new File("src/test/resources/photo.png");
-        ContactData contact = new ContactData().whithFirstname("xtest1").withLastname("xtest2").withAddress("addd").withEmail("dcbs@kf.ru").
-                withEmail2("@22").withEmail3("@33").withHomePhone("h3244").withMobile("+79823").withWorkPhone("w2344").withPhoto(photo);
+        //File photo = new File("src/test/resources/photo.png");
         app.contact().create(contact);
         Set<ContactData> after = app.contact().all();
         Assert.assertEquals(after.size(), before.size()+1 );

@@ -25,13 +25,13 @@ public class ContactHelper extends HalperBase {
         type(By.name("firstname"), contactData.getFirstname());
         type(By.name("lastname"), contactData.getLastname());
         type(By.name("mobile"), contactData.getMobilePhone());
-        type(By.name("work"), contactData.getWorkPhone());
-        type(By.name("home"), contactData.getHomePhone());
+        //type(By.name("work"), contactData.getWorkPhone());
+        //type(By.name("home"), contactData.getHomePhone());
         type(By.name("email"), contactData.getEmail());
-        type(By.name("email2"), contactData.getEmail2());
-        type(By.name("email3"), contactData.getEmail3());
-        type(By.name("address"), contactData.getAddress());
-        attach(By.name("photo"), contactData.getPhoto());
+        //type(By.name("email2"), contactData.getEmail2());
+        //type(By.name("email3"), contactData.getEmail3());
+        //type(By.name("address"), contactData.getAddress());
+        //attach(By.name("photo"), contactData.getPhoto());
     }
 
     public void submitContactCriation() {
@@ -112,7 +112,7 @@ public class ContactHelper extends HalperBase {
         for (WebElement element: elements){
 
         int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-           ContactData contact = new ContactData().whithFirstname(element.findElement( By.xpath(".//td[3]")).getText()).
+           ContactData contact = new ContactData().withFirstname(element.findElement( By.xpath(".//td[3]")).getText()).
                    withLastname(element.findElement(By.xpath(".//td[2]")).getText()).withMobile(element.findElement(By.xpath(".//td[6]")).getText()).
                    withEmail(element.findElement(By.xpath(".//td[5]")).getText());
             contacts.add(contact);
@@ -133,7 +133,7 @@ public class ContactHelper extends HalperBase {
             String allPhones = cells.get(5).getText();
             String allEmails = cells.get(4).getText();
             String address = cells.get(3).getText();
-            contacts.add(new ContactData().withId(id).whithFirstname(firstname).withLastname(lastname).
+            contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).
                     withAllPhones(allPhones).
                     withAllEmail(allEmails).
                     withAddress(address));
@@ -155,7 +155,7 @@ public class ContactHelper extends HalperBase {
         String email3 = wd.findElement(By.name("email3")).getAttribute("value");
         String address = wd.findElement(By.name("address")).getAttribute("value");
         wd.navigate().back();
-        return new ContactData().withId(contact.getId()).whithFirstname(firstname).withLastname(lastname).withMobile(mobile).
+        return new ContactData().withId(contact.getId()).withFirstname(firstname).withLastname(lastname).withMobile(mobile).
                 withWorkPhone(work).withHomePhone(home).withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
     }
 

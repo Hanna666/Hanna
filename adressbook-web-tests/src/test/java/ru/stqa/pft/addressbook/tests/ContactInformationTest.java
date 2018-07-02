@@ -16,7 +16,7 @@ public class ContactInformationTest extends TestBase {
     public void ensurePrecondition() {
         app.contact().homePage();
         if (app.contact().list().size() == 0) {
-            app.contact().create (new ContactData().whithFirstname("xtest1").withLastname("xtest2").withAddress("addd").withEmail("dcbs@kf.ru").
+            app.contact().create (new ContactData().withFirstname("xtest1").withLastname("xtest2").withAddress("addd").withEmail("dcbs@kf.ru").
                     withEmail2("@22").withEmail3("@33").withHomePhone("h3244").withMobile("+79823").withWorkPhone("w2344"));
         }
     }
