@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
@@ -15,6 +16,17 @@ public class ContactData {
     private String address;
     private String allPhones;
     private String allEmail;
+    private File photo;
+
+
+    public File getPhoto() {
+        return photo;
+    }
+
+    public ContactData withPhoto(File photo) {
+        this.photo = photo;
+        return this;
+    }
 
     public String getAllEmail() {
         return allEmail;
@@ -37,8 +49,8 @@ public class ContactData {
     public String getWorkPhone() {
         return worckPhone;
     }
-    public ContactData withWorkPhone (String worckPhone){
-        this.worckPhone = worckPhone;
+    public ContactData withWorkPhone (String workPhone){
+        this.worckPhone = workPhone;
         return this;
     }
 
@@ -78,16 +90,6 @@ public class ContactData {
     }
 
 
-    public ContactData whisFirstname(String firstname) {
-        this.firstname = firstname;
-        return this;
-    }
-
-    public ContactData withLastname(String lastname) {
-        this.lastname = lastname;
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,15 +97,24 @@ public class ContactData {
         ContactData that = (ContactData) o;
         return id == that.id &&
                 Objects.equals(firstname, that.firstname) &&
-                Objects.equals(lastname, that.lastname) &&
-                Objects.equals(mobile, that.mobile) &&
-                Objects.equals(email, that.email);
+                Objects.equals(lastname, that.lastname);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, firstname, lastname, mobile, email);
+        return Objects.hash(id, firstname, lastname);
+    }
+
+    public ContactData whithFirstname(String firstname) {
+        this.firstname = firstname;
+        return this;
+
+    }
+
+    public ContactData withLastname(String lastname) {
+        this.lastname = lastname;
+        return this;
     }
 
     public ContactData withMobile(String mobile) {

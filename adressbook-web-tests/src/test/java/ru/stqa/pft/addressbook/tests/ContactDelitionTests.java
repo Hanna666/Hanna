@@ -1,15 +1,12 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.hamcrest.CoreMatchers;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-import java.util.List;
 import java.util.Set;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDelitionTests extends TestBase {
@@ -18,7 +15,7 @@ public class ContactDelitionTests extends TestBase {
     public void ensurePrecondition(){
         app.contact().homePage();
         if (app.contact().list().size() == 0) {
-            app.contact().create(new ContactData().whisFirstname("xtest1").withLastname("xtest2"));
+            app.contact().create(new ContactData().whithFirstname("xtest1").withLastname("xtest2"));
         }
     }
 
