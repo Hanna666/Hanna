@@ -4,10 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-
 import java.util.Set;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDelitionTests extends TestBase {
     @BeforeMethod

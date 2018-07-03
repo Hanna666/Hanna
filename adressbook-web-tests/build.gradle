@@ -10,7 +10,28 @@ dependencies {
     compile 'org.hamcrest:java-hamcrest:2.0.0.0'
     compile 'org.gosu-lang.gosu.managed:gw-jcommander:1.48'
     compile 'com.thoughtworks.xstream:xstream:1.4.10'
+}
 
+task testGroups(type: Test) {
+        useTestNG {
+            suites 'src/test/resorces/testng-groups.xml'
+        }
+    if (projects.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (projects.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    }
 
-
+task testContacts(type: Test) {
+    useTestNG {
+        suites 'src/test/resorces/testng-contacts.xml'
+    }
+    if (projects.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (projects.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
 }

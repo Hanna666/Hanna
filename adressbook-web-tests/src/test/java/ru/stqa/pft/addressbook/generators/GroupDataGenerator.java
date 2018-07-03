@@ -1,12 +1,10 @@
 package ru.stqa.pft.addressbook.generators;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import gw.internal.ext.com.beust.jcommander.JCommander;
 import gw.internal.ext.com.beust.jcommander.Parameter;
 import gw.internal.ext.com.beust.jcommander.ParameterException;
 import ru.stqa.pft.addressbook.model.GroupData;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -54,17 +52,18 @@ public class GroupDataGenerator {
         XStream xstream = new XStream();
         xstream.processAnnotations(GroupData.class);
         String xml = xstream.toXML(groups);
-        Writer writer = new FileWriter(file);
-        writer.write(xml);
-        writer.close();
+        try ( Writer writer = new FileWriter(file)) {
+            writer.write(xml);
+        }
     }
 
     private void saveAsCsv(List<GroupData> groups, File file) throws IOException {
-        Writer writer = new FileWriter(file);
-        for (GroupData group : groups){
-            writer.write(String.format("%s;%s;$s\n", group.getName(), group.getHeader(), group.getFooter()));
-        }
-        writer.close();
+       try (Writer writer = new FileWriter(file)) {
+
+           for (GroupData group : groups) {
+               writer.write(String.format("%s;%s;$s\n", group.getName(), group.getHeader(), group.getFooter()));
+           }
+       }
     }
 
     private List<GroupData> generateGroups(int count) {
