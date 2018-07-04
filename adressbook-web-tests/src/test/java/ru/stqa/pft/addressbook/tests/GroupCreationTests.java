@@ -33,10 +33,10 @@ public class GroupCreationTests extends TestBase {
 
     @Test (dataProvider = "validGroups")
     public void testGroupCreation( GroupData group) {
-            app.goTo().GroupPage();
-            Groups before = app.group().all();
+            app.goTo().groupPage();
+            Groups before = app.db().groups();
             app.group().create(group);
-            Groups after = app.group().all();
+            Groups after = app.db().groups();
             assertThat(after.size(), equalTo(before.size() + 1));
 
             assertThat(after, equalTo(

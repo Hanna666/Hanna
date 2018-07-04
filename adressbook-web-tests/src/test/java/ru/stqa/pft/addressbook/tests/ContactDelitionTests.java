@@ -8,11 +8,12 @@ import java.util.Set;
 
 
 public class ContactDelitionTests extends TestBase {
+
     @BeforeMethod
 
     public void ensurePrecondition(){
-        app.contact().homePage();
-        if (app.contact().list().size() == 0) {
+        if (app.db().contacts().size() == 0) {
+            app.contact().homePage();
             app.contact().create(new ContactData().withFirstname("xtest1").withLastname("xtest2"));
         }
     }
@@ -22,11 +23,11 @@ public class ContactDelitionTests extends TestBase {
 
     {
 
-        Set<ContactData> before = app.contact().all();
+        Set<ContactData> before = app.db().contacts();
         ContactData deletedContact = before.iterator().next();
         app.contact().delete(deletedContact);
 
-        Set<ContactData> after = app.contact().all();
+        Set<ContactData> after = app.db().contacts();
         Assert.assertEquals(after.size(),before.size()-1);
 
         before.remove(deletedContact);

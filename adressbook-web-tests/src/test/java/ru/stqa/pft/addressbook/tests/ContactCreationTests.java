@@ -32,10 +32,10 @@ public class ContactCreationTests extends TestBase{
     @Test (dataProvider = "validContacts")
     public void testContactCreation (ContactData contact) {
         app.contact().homePage();
-        Set<ContactData> before = app.contact().all();
+        Set<ContactData> before = app.db().contacts();
         //File photo = new File("src/test/resources/photo.png");
         app.contact().create(contact);
-        Set<ContactData> after = app.contact().all();
+        Set<ContactData> after = app.db().contacts();
         Assert.assertEquals(after.size(), before.size()+1 );
 
         contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
