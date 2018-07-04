@@ -75,7 +75,7 @@ public class ContactHelper extends HalperBase {
         homePage();
     }
     public void modify(ContactData contact) {
-        modificationContact();
+        initModificationContactById(contact.getId());
         fillContactForm (contact);
         okModificationContact();
         contactCach = null;
@@ -96,6 +96,11 @@ public class ContactHelper extends HalperBase {
         okDelitionContact();
         contactCach = null;
         homePage();
+    }
+
+    public void addContact (ContactData contact) {
+        selectContactById(contact.getId());
+
     }
 
     public boolean isThereAContact() {
