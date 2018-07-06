@@ -1,9 +1,12 @@
 package ru.stqa.pft.addressbook.appmanager;
 
+import org.hibernate.dialect.Dialect;
+import org.hibernate.sql.Select;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.tests.Contacts;
 
 import java.util.ArrayList;
@@ -47,8 +50,11 @@ public class ContactHelper extends HalperBase {
 
     }
     public void selectContactById(int id) {
-        wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
 
+    }
+    public void selectGroup (String id) {
+        wd.findElement(By.cssSelector("option[value'" + id + "]")).click();
     }
 
     public void delitionSelectedContact() {
@@ -98,10 +104,7 @@ public class ContactHelper extends HalperBase {
         homePage();
     }
 
-    public void addContact (ContactData contact) {
-        selectContactById(contact.getId());
 
-    }
 
     public boolean isThereAContact() {
        return isElementPresent(By.name("selected[]"));
@@ -167,4 +170,34 @@ public class ContactHelper extends HalperBase {
     private void initModificationContactById(int id) {
         wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
     }
+
+    public void addContactInGroup(ContactData contact, GroupData group) {
+               selectContactById(contact.getId());
+                addInGroup(group);
+                contactCach  = null;
+                homePage();
+            }
+
+            private void addInGroup(GroupData group){
+                WebElement window = wd.findElement(By.name("to_group"));
+                Select select = new Select((Dialect) window);
+                selectGroup(String.valueOf(group.getId()));
+                click(By.name("add"));
+            }
+
+            public void deleteContactFromGroup(ContactData contact, GroupData group) {
+                deleteFromGroup(contact, group);
+                contactCach = null;
+                homePage();
+            }
+
+            private void deleteFromGroup(ContactData contact, GroupData group){
+                WebElement window = wd.findElement(By.name("group"));
+                Select select = new Select((Dialect) window);
+                selectGroup(String.valueOf(group.getId()));
+                selectContactById(contact.getId());
+                click(By.name("remove"));
+            }
+
+
 }

@@ -13,3 +13,5 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 .idea/workspace.xml
+adressbook-web-tests/src/test/java/ru/stqa/pft/addressbook/tests/ContactAddToGroupTest.java
+adressbook-web-tests/out/test/classes/ru/stqa/pft/addressbook/tests/ContactAddToGroupTest.class
